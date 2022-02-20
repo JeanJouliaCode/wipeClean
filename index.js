@@ -6,7 +6,7 @@ const rows = process.stdout.rows
 const burshWidth = 6
 const deformationFactor = 2
 const delay = 2
-const frameSpeed = 7
+const frameSpeed = 10
 
 function startDrawing() {
 
@@ -52,25 +52,41 @@ function getSquarePath(closestStartPoint) {
   const horizontalMargin = ((burshWidth * deformationFactor) / 2)
   const startPoint = { x: closestStartPoint.x, y: rows - verticalMargin }
 
-  for (let x = startPoint.x; x > -1; x--) {
+  for (let x = startPoint.x; x > -2; x--) {
     points.push({ y: rows - verticalMargin + 1, x, angle: Math.PI / 2 })
   }
 
-  for (let y = rows; y > -1; y--) {
+  let anglePoints = getCirclefPoints(Math.floor(burshWidth / 2), 0, Math.PI / 2)
+  anglePoints = anglePoints.map(point => ({ x: point.x, y: point.y + rows - verticalMargin * 2, angle: point.angle })).reverse()
+  points = [...points, ...anglePoints]
+
+  for (let y = rows - verticalMargin - 3; y > -1; y--) {
     points.push({ y, x: horizontalMargin - 1, angle: Math.PI })
     points.push({ y, x: horizontalMargin - 1, angle: Math.PI })
   }
 
-  for (let x = 0; x < columns; x++) {
+  let anglePoints2 = getCirclefPoints(Math.floor(burshWidth / 2), Math.PI, Math.PI * 3 / 2).reverse()
+  anglePoints2 = anglePoints2.map(point => ({ x: point.x + horizontalMargin * 2, y: point.y, angle: point.angle })).reverse()
+  points = [...points, ...anglePoints2]
+
+  for (let x = horizontalMargin + 3; x < columns; x++) {
     points.push({ y: verticalMargin - 1, x, angle: Math.PI / 2 })
   }
 
-  for (let y = verticalMargin; y < rows; y++) {
+  let anglePoints3 = getCirclefPoints(Math.floor(burshWidth / 2), Math.PI, Math.PI * 3 / 2).reverse()
+  anglePoints3 = anglePoints3.map(point => ({ x: point.x + columns, y: point.y + verticalMargin * 2, angle: point.angle }))
+  points = [...points, ...anglePoints3]
+
+  for (let y = verticalMargin + 3; y < rows; y++) {
     points.push({ y, x: columns - horizontalMargin, angle: Math.PI })
     points.push({ y, x: columns - horizontalMargin, angle: Math.PI })
   }
 
-  for (let x = columns; x > startPoint.x; x--) {
+  let anglePoints4 = getCirclefPoints(Math.floor(burshWidth / 2), Math.PI * 3 / 2, Math.PI * 4 / 2)
+  anglePoints4 = anglePoints4.map(point => ({ x: point.x + columns - horizontalMargin * 2, y: point.y + rows, angle: point.angle })).reverse()
+  points = [...points, ...anglePoints4]
+
+  for (let x = columns - horizontalMargin - 3; x > startPoint.x; x--) {
     points.push({ y: rows - verticalMargin, x, angle: Math.PI / 2 })
 
   }
@@ -98,7 +114,7 @@ function getKeyPoints() {
   let points = []
   const halfBrushDeformed = (burshWidth * deformationFactor) / 2
   let step = 0
-  while (((burshWidth / 2) * 3 + (step) * burshWidth) < rows) {
+  while (((burshWidth / 2) * 3 + (step - 1) * burshWidth) < rows) {
     points.push([{ x: halfBrushDeformed * 2, y: (burshWidth / 2) * 2 + step * burshWidth }, { x: columns - halfBrushDeformed * 2, y: (burshWidth / 2) * 1 + step * burshWidth }])
     points.push([{ x: columns - halfBrushDeformed * 1, y: (burshWidth / 2) * 4 + step * burshWidth }, { x: halfBrushDeformed * 2, y: (burshWidth / 2) * 2 + step * burshWidth }])
     step++
@@ -142,7 +158,7 @@ function drawnStringAt(x, y, str) {
   process.stdout.write(str)
 }
 
-function drawPoints(list, character = '⬛') {
+function drawPoints(list, character = '#') {
   list.forEach(point => {
     if (point.y <= rows - 1) drawnStringAt(point.x, point.y, character)
   })
