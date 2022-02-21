@@ -1,12 +1,11 @@
 #!/usr/bin/env node
-
 const columns = process.stdout.columns
 const rows = process.stdout.rows
 
 const burshWidth = 6
 const deformationFactor = 2
 const delay = 2
-const frameSpeed = 10
+const frameSpeed = 7
 
 function startDrawing() {
 
@@ -27,6 +26,11 @@ function startDrawing() {
       drawPoints(BurshPoints, ' ')
     }, ((index + delay) * frameSpeed))
   })
+
+  setTimeout(() => {
+    process.stdout.cursorTo(0, 0)
+    process.stdout.write('\x1Bc');
+  }, ((points.length + delay) * frameSpeed))
 }
 
 function getFullPath() {

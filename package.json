@@ -3,17 +3,12 @@
   "version": "1.0.0",
   "description": "clean the console in a funny way",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "bin": {
-    "jsonp": "index.js"
+    "wipeClean": "index.js"
   },
   "author": "Jean Joulia",
   "type": "module",
   "license": "ISC",
-  "dependencies": {
-    "commander": "^9.0.0",
-    "shelljs": "^0.8.5"
-  }
+  "dependencies": {}
 }
