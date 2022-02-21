@@ -5,10 +5,18 @@
   "main": "index.js",
   "scripts": {},
   "bin": {
-    "wipeClean": "index.js"
+    "wipeclean": "index.js"
   },
   "author": "Jean Joulia",
   "type": "module",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeanJouliaCode/wipeClean.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JeanJouliaCode/wipeClean/issues"
+  },
+  "homepage": "https://github.com/JeanJouliaCode/wipeClean#readme"
 }
