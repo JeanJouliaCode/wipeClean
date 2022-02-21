@@ -9,48 +9,51 @@ const frameSpeed = 7
 
 function startDrawing() {
 
-  let points = getFullPath()
-  const squarePoints = getSquarePath(points[points.length - 1])
-  points = [...points, ...squarePoints]
+  const zigZagPath = geZigZagPath()
+  const rectangulaPath = getRectangularPath(zigZagPath[zigZagPath.length - 1])
+  const finalPath = [...zigZagPath, ...rectangulaPath]
 
-  //drawPoints(points)
-  points.forEach((point, index) => {
+  finalPath.forEach((point, index) => {
     const BurshPoints = getBrushPoints(point.x, point.y, point.angle)
-    setTimeout(() => {
 
+    //draw Brush
+    setTimeout(() => {
       drawPoints(BurshPoints)
     }, index * frameSpeed)
 
+    //erase brush with a delay
     if (index + delay >= 0) setTimeout(() => {
-
       drawPoints(BurshPoints, ' ')
     }, ((index + delay) * frameSpeed))
   })
 
+  //clear the screen and remove all log
   setTimeout(() => {
     process.stdout.cursorTo(0, 0)
     process.stdout.write('\x1Bc');
-  }, ((points.length + delay) * frameSpeed))
+  }, ((finalPath.length + delay) * frameSpeed))
 }
 
-function getFullPath() {
+function geZigZagPath() {
   //get half circle path
   const circlePointsLeft = getCirclefPoints(Math.floor(burshWidth / 2), Math.PI / 2, Math.PI * 3 / 2).reverse()
   const circlePointsRight = getCirclefPoints(Math.floor(burshWidth / 2), Math.PI * 3 / 2, Math.PI * 5 / 2)
 
+  //points by which the squeegee
   const keyPoints = getKeyPoints()
+
   let points = []
   for (let step = 0; step < keyPoints.length; step++) {
-    let linePoints = getLinePoints(keyPoints[step][0].x, keyPoints[step][0].y, keyPoints[step][1].x, keyPoints[step][1].y)
-    let turnPoint = (step % 2 == 0 ? circlePointsRight : circlePointsLeft).map(point => (
+    const linePoints = getLinePoints(keyPoints[step][0].x, keyPoints[step][0].y, keyPoints[step][1].x, keyPoints[step][1].y)
+    const turnPoints = (step % 2 == 0 ? circlePointsRight : circlePointsLeft).map(point => (
       { x: point.x + keyPoints[step][1].x, y: point.y + keyPoints[step][1].y + burshWidth / 2, angle: point.angle }
     ))
-    points = [...points, ...linePoints, ...turnPoint]
+    points = [...points, ...linePoints, ...turnPoints]
   }
   return points
 }
 
-function getSquarePath(closestStartPoint) {
+function getRectangularPath(closestStartPoint) {
   let points = []
   const verticalMargin = (burshWidth / 2)
   const horizontalMargin = ((burshWidth * deformationFactor) / 2)
@@ -97,14 +100,6 @@ function getSquarePath(closestStartPoint) {
   return points
 }
 
-function removeEveryNelement(list, N = 3) {
-  let newList = []
-  list.forEach((point, index) => {
-    if (index % N === 0) newList.push(point)
-  })
-  return newList;
-}
-
 function getCirclefPoints(radius, start, end) {
   const angleStep = 5
   let points = []
@@ -118,6 +113,7 @@ function getKeyPoints() {
   let points = []
   const halfBrushDeformed = (burshWidth * deformationFactor) / 2
   let step = 0
+
   while (((burshWidth / 2) * 3 + (step - 1) * burshWidth) < rows) {
     points.push([{ x: halfBrushDeformed * 2, y: (burshWidth / 2) * 2 + step * burshWidth }, { x: columns - halfBrushDeformed * 2, y: (burshWidth / 2) * 1 + step * burshWidth }])
     points.push([{ x: columns - halfBrushDeformed * 1, y: (burshWidth / 2) * 4 + step * burshWidth }, { x: halfBrushDeformed * 2, y: (burshWidth / 2) * 2 + step * burshWidth }])
