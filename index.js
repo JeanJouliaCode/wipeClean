@@ -160,7 +160,7 @@ function drawnStringAt(x, y, str) {
 
 function drawPoints(list, character = '#') {
   list.forEach(point => {
-    if (point.y <= rows - 1) drawnStringAt(point.x, point.y, character)
+    if (point.y < rows && point.x < columns) drawnStringAt(point.x, point.y, character)
   })
 }
 
