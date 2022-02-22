@@ -4,7 +4,7 @@ const rows = process.stdout.rows
 
 const burshWidth = 6
 const deformationFactor = 2
-const delay = 2
+const delay = 3
 const frameSpeed = 7
 
 function startDrawing() {

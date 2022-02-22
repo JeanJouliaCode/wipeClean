@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {},
   "bin": {
-    "wipeclean": "index.js"
+    "wipecleantest": "index.js"
   },
   "author": "Jean Joulia",
   "type": "module",
