@@ -9,6 +9,8 @@ const frameSpeed = 7
 
 function startDrawing() {
 
+
+
   const zigZagPath = geZigZagPath()
   const rectangulaPath = getRectangularPath(zigZagPath[zigZagPath.length - 1])
   const finalPath = [...zigZagPath, ...rectangulaPath]
@@ -116,7 +118,7 @@ function getKeyPoints() {
 
   while (((burshWidth / 2) * 3 + (step - 1) * burshWidth) < rows) {
     points.push([{ x: halfBrushDeformed * 2, y: (burshWidth / 2) * 2 + step * burshWidth }, { x: columns - halfBrushDeformed * 2, y: (burshWidth / 2) * 1 + step * burshWidth }])
-    points.push([{ x: columns - halfBrushDeformed * 1, y: (burshWidth / 2) * 4 + step * burshWidth }, { x: halfBrushDeformed * 2, y: (burshWidth / 2) * 2 + step * burshWidth }])
+    points.push([{ x: columns - halfBrushDeformed * 2, y: (burshWidth / 2) * 3 + step * burshWidth }, { x: halfBrushDeformed * 2, y: (burshWidth / 2) * 2 + step * burshWidth }])
     step++
   }
   return points
@@ -128,7 +130,7 @@ function getLinePoints(startX, startY, endX, endY) {
   const Xdirection = endX > startX ? 1 : -1
   const angle = -Math.atan((endY - startX) / startY - endY)
   for (let step = 0; step < Math.abs(endX - startX); step++) {
-    points.push({ x: step + startX * Xdirection, y: startY + Ystep * step, angle })
+    points.push({ x: step * Xdirection + startX, y: startY + Ystep * step, angle })
   }
   return points
 }
