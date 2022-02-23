@@ -1,14 +1,16 @@
 #!/usr/bin/env node
+import { program } from 'commander'
+
 const columns = process.stdout.columns
 const rows = process.stdout.rows
 
 const burshWidth = 6
 const deformationFactor = 2
 const delay = 3
-const frameSpeed = 7
 
-function startDrawing() {
-  const zigZagPath = geZigZagPath()
+function startDrawing(speed = 150) {
+  const msPerFrame = 1000 / speed
+  const zigZagPath = getZigZagPath()
   const rectangulaPath = getRectangularPath(zigZagPath[zigZagPath.length - 1])
   const finalPath = [...zigZagPath, ...rectangulaPath]
 
@@ -18,23 +20,23 @@ function startDrawing() {
     //draw Brush
     setTimeout(() => {
       drawPoints(BurshPoints)
-    }, index * frameSpeed)
+    }, index * msPerFrame)
 
     //erase brush with a delay
     if (index + delay >= 0)
       setTimeout(() => {
         drawPoints(BurshPoints, ' ')
-      }, (index + delay) * frameSpeed)
+      }, (index + delay) * msPerFrame)
   })
 
   //clear the screen and remove all log
   setTimeout(() => {
     process.stdout.cursorTo(0, 0)
     process.stdout.write('\x1Bc')
-  }, (finalPath.length + delay) * frameSpeed)
+  }, (finalPath.length + delay) * msPerFrame)
 }
 
-function geZigZagPath() {
+function getZigZagPath() {
   //get half circle path
   const circlePointsLeft = getCirclefPoints(
     Math.floor(burshWidth / 2),
@@ -253,4 +255,11 @@ function drawPoints(list, character = '#') {
   })
 }
 
-startDrawing()
+program
+  .option('-s, --speed <speed>', 'use brush speed in frames per second')
+  .action(({ speed }) => {
+    console.log(speed)
+    startDrawing(speed)
+  })
+
+program.parse()
