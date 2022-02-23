@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { program } from 'commander'
 import { existsSync, writeFileSync, mkdirSync, readFileSync } from 'fs'
+import { homedir } from 'os'
 
-const CONFIG_DIRECTORY = `${process.env.HOME}/.wipeclean`
+const CONFIG_DIRECTORY = `${homedir()}/.wipeclean`
 const CONFIG_FILE = `${CONFIG_DIRECTORY}/config.json`
 
 const BRUSH_WIDTH = 6
