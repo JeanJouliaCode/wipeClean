@@ -3,8 +3,9 @@ import { program } from 'commander'
 import { existsSync, writeFileSync, mkdirSync, readFileSync } from 'fs'
 import { homedir } from 'os'
 
-const CONFIG_DIRECTORY = `${homedir()}/.wipeclean`
-const CONFIG_FILE = `${CONFIG_DIRECTORY}/config.json`
+const CONFIG_DIRECTORY = `${homedir()}/.config`
+const WIPECLEAN_CONFIG_DIRECTORY = `${CONFIG_DIRECTORY}/wipeclean`
+const CONFIG_FILE = `${WIPECLEAN_CONFIG_DIRECTORY}/config.json`
 
 const BRUSH_WIDTH = 6
 const DEFORMATION_FACTOR = 2
@@ -287,17 +288,14 @@ function safeReadConfig(filePath) {
 
 function updateSavedSpeed(newSpeed) {
   safeCreateDirectory(CONFIG_DIRECTORY)
+  safeCreateDirectory(WIPECLEAN_CONFIG_DIRECTORY)
   writeFileSync(CONFIG_FILE, JSON.stringify({ speed: newSpeed }))
   console.log(`Updated brush speed to ${newSpeed} fps`)
 }
 
 function drawWithSavedSpeed() {
-  let speed
-  try {
-    ;({ speed } = safeReadConfig(CONFIG_FILE))
-  } finally {
-    startDrawing(speed)
-  }
+  const { speed } = safeReadConfig(CONFIG_FILE)
+  startDrawing(speed)
 }
 
 program
