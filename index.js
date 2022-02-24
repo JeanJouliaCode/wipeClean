@@ -302,6 +302,10 @@ program
   .option('-s, --speed <speed>', 'use brush speed in frames per second')
   .action(({ speed: newSpeed }) => {
     if (newSpeed) {
+      if (process.platform === 'win32') {
+        console.log('Custom brush speed is not supported on Windows.')
+        return
+      }
       updateSavedSpeed(newSpeed)
     } else {
       drawWithSavedSpeed()

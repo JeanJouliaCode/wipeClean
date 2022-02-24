@@ -13,9 +13,6 @@
   "author": "Jean Joulia",
   "type": "module",
   "license": "ISC",
-  "dependencies": {
-    "commander": "^9.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JeanJouliaCode/wipeClean.git"
@@ -24,6 +21,9 @@
     "url": "https://github.com/JeanJouliaCode/wipeClean/issues"
   },
   "homepage": "https://github.com/JeanJouliaCode/wipeClean#readme",
+  "dependencies": {
+    "commander": "^9.0.0"
+  },
   "devDependencies": {
     "prettier": "^2.5.1"
   }
