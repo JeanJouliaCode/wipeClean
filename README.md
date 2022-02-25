@@ -1,5 +1,7 @@
 # wipeclean
 
+[![Packaging status](https://repology.org/badge/tiny-repos/wipeclean.svg)](https://repology.org/project/wipeclean/versions)
+
 tired of the old and unintresting clear commande ? 
 Do you want your error messages to be slowly wiped away ?
 Then try wipeclean!
