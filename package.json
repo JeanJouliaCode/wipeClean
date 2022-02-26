@@ -1,16 +1,18 @@
 {
   "name": "wipeclean",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "clean the console in a funny way",
   "main": "index.js",
   "scripts": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "bin": {
     "wipeclean": "index.js"
   },
   "author": "Jean Joulia",
   "type": "module",
   "license": "ISC",
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JeanJouliaCode/wipeClean.git"
@@ -18,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/JeanJouliaCode/wipeClean/issues"
   },
-  "homepage": "https://github.com/JeanJouliaCode/wipeClean#readme"
+  "homepage": "https://github.com/JeanJouliaCode/wipeClean#readme",
+  "dependencies": {
+    "commander": "^9.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
 }
