@@ -6,6 +6,9 @@ Then try wipeclean!
 
 `npm install wipeclean -g`
 
+you can also find it on Aura
+https://aur.archlinux.org/packages/wipeclean
+
 ## Usage
 
 Run the animation:
