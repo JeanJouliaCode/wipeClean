@@ -6,7 +6,7 @@ Then try wipeclean!
 
 `npm install wipeclean -g`
 
-you can also find it on Aura
+you can also find it on Aur
 https://aur.archlinux.org/packages/wipeclean
 
 ## Usage
