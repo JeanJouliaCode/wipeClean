@@ -1,7 +1,9 @@
 # wipeclean
+[![Packaging status](https://repology.org/badge/tiny-repos/wipeclean.svg)](https://repology.org/project/wipeclean/versions)
 
 Tired of the old and unintresting clear command?
 Do you want your error messages to be slowly wiped away?
+
 Then try wipeclean!
 
 `npm install wipeclean -g`
