@@ -13,10 +13,6 @@ https://aur.archlinux.org/packages/wipeclean
 
 ## Usage
 
-Run the animation:
-
-`wipeclean`
-
 to run the program just wripe: 
 
 `wipeclean`
