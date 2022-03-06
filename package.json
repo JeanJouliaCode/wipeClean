@@ -1,6 +1,6 @@
 {
   "name": "wipeclean",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "clean the console in a funny way",
   "main": "index.js",
   "scripts": {},
