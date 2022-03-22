@@ -17,8 +17,8 @@ const ROWS = process.stdout.rows
 function startDrawing(speed = 150) {
   const msPerFrame = 1000 / speed
   const zigZagPath = getZigZagPath()
-  const rectangulaPath = getRectangularPath(zigZagPath[zigZagPath.length - 1])
-  const finalPath = [...zigZagPath, ...rectangulaPath]
+  const rectangularPath = getRectangularPath(zigZagPath[zigZagPath.length - 1])
+  const finalPath = [...zigZagPath, ...rectangularPath]
 
   finalPath.forEach((point, index) => {
     const BrushPoints = getBrushPoints(point.x, point.y, point.angle)
