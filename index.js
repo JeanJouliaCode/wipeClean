@@ -21,17 +21,17 @@ function startDrawing(speed = 150) {
   const finalPath = [...zigZagPath, ...rectangulaPath]
 
   finalPath.forEach((point, index) => {
-    const BurshPoints = getBrushPoints(point.x, point.y, point.angle)
+    const BrushPoints = getBrushPoints(point.x, point.y, point.angle)
 
     //draw Brush
     setTimeout(() => {
-      drawPoints(BurshPoints)
+      drawPoints(BrushPoints)
     }, index * msPerFrame)
 
     //erase brush with a DELAY
     if (index + DELAY >= 0)
       setTimeout(() => {
-        drawPoints(BurshPoints, ' ')
+        drawPoints(BrushPoints, ' ')
       }, (index + DELAY) * msPerFrame)
   })
 
@@ -44,12 +44,12 @@ function startDrawing(speed = 150) {
 
 function getZigZagPath() {
   //get half circle path
-  const circlePointsLeft = getCirclefPoints(
+  const circlePointsLeft = getCirclePoints(
     Math.floor(BRUSH_WIDTH / 2),
     Math.PI / 2,
     (Math.PI * 3) / 2,
   ).reverse()
-  const circlePointsRight = getCirclefPoints(
+  const circlePointsRight = getCirclePoints(
     Math.floor(BRUSH_WIDTH / 2),
     (Math.PI * 3) / 2,
     (Math.PI * 5) / 2,
@@ -88,7 +88,7 @@ function getRectangularPath(closestStartPoint) {
     points.push({ y: ROWS - verticalMargin + 1, x, angle: Math.PI / 2 })
   }
 
-  let anglePoints = getCirclefPoints(
+  let anglePoints = getCirclePoints(
     Math.floor(BRUSH_WIDTH / 2),
     0,
     Math.PI / 2,
@@ -107,7 +107,7 @@ function getRectangularPath(closestStartPoint) {
     points.push({ y, x: horizontalMargin - 1, angle: Math.PI })
   }
 
-  let anglePoints2 = getCirclefPoints(
+  let anglePoints2 = getCirclePoints(
     Math.floor(BRUSH_WIDTH / 2),
     Math.PI,
     (Math.PI * 3) / 2,
@@ -125,7 +125,7 @@ function getRectangularPath(closestStartPoint) {
     points.push({ y: verticalMargin - 1, x, angle: Math.PI / 2 })
   }
 
-  let anglePoints3 = getCirclefPoints(
+  let anglePoints3 = getCirclePoints(
     Math.floor(BRUSH_WIDTH / 2),
     Math.PI,
     (Math.PI * 3) / 2,
@@ -142,7 +142,7 @@ function getRectangularPath(closestStartPoint) {
     points.push({ y, x: COLUMNS - horizontalMargin, angle: Math.PI })
   }
 
-  let anglePoints4 = getCirclefPoints(
+  let anglePoints4 = getCirclePoints(
     Math.floor(BRUSH_WIDTH / 2),
     (Math.PI * 3) / 2,
     (Math.PI * 4) / 2,
@@ -162,7 +162,7 @@ function getRectangularPath(closestStartPoint) {
   return points
 }
 
-function getCirclefPoints(radius, start, end) {
+function getCirclePoints(radius, start, end) {
   const angleStep = 5
   let points = []
   for (
