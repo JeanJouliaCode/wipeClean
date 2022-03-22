@@ -2,6 +2,7 @@
 import { program } from 'commander'
 import { existsSync, writeFileSync, mkdirSync, readFileSync } from 'fs'
 import { homedir } from 'os'
+import { spawn } from 'child_process'
 
 const CONFIG_DIRECTORY = `${homedir()}/.config`
 const WIPECLEAN_CONFIG_DIRECTORY = `${CONFIG_DIRECTORY}/wipeclean`
@@ -40,6 +41,9 @@ function startDrawing(speed = 150) {
     process.stdout.cursorTo(0, 0)
     process.stdout.write('\x1Bc')
   }, (finalPath.length + DELAY) * msPerFrame)
+  if (annoyingDrip) {
+
+  }
 }
 
 function getZigZagPath() {
@@ -259,7 +263,7 @@ function getBrushPoints(x, y, angle) {
   return points
 }
 
-function drawnStringAt(x, y, str) {
+function drawStringAt(x, y, str) {
   process.stdout.cursorTo(Math.round(x), Math.round(y))
   process.stdout.write(str)
 }
@@ -267,7 +271,7 @@ function drawnStringAt(x, y, str) {
 function drawPoints(list, character = '#') {
   list.forEach((point) => {
     if (point.y < ROWS && point.x < COLUMNS)
-      drawnStringAt(point.x, point.y, character)
+      drawStringAt(point.x, point.y, character)
   })
 }
 
