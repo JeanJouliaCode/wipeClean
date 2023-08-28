@@ -13,7 +13,7 @@ https://aur.archlinux.org/packages/wipeclean
 
 ## Usage
 
-to run the program just wripe: 
+to run the program just write: 
 
 `wipeclean`
 
