@@ -21,7 +21,7 @@ to run the program just write:
 
 ## Options
 
-Configurable values are stored in `~/.wipeclean/config.json.`
+Configurable values are stored in `~/.wipeclean/config.json`.
 
 Set the brush speed (in frames per second):
 
