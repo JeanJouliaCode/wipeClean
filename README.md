@@ -13,7 +13,7 @@ https://aur.archlinux.org/packages/wipeclean
 
 ## Usage
 
-to run the program just wripe: 
+to run the program just write: 
 
 `wipeclean`
 
@@ -21,7 +21,7 @@ to run the program just wripe:
 
 ## Options
 
-Configurable values are stored in `~/.wipeclean/config.json.`
+Configurable values are stored in `~/.wipeclean/config.json`.
 
 Set the brush speed (in frames per second):
 
