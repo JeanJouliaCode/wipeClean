@@ -22,12 +22,21 @@ You can also [find it on Aur](https://aur.archlinux.org/packages/wipeclean) and 
 Note that the yay package is unofficial and not created by the original developer.
 </details>
 
+<details>
+<summary>Nix</summary>
+
+or try it with out installing from Nix:<br>
+`nix run github:JeanJouliaCode/wipeClean`
+
+</details>
+
 ## Usage
 
 to run the program just write: `wipeclean`<br>
 consider setting an alias to `clean` like `echo "alias clean=wipeclean" >> ~/.bash_aliases`
 
 ![ezgif-1-e28b5aae8c](https://user-images.githubusercontent.com/60259431/155228227-a429c2ae-a003-41d0-b8de-a6fa8b7413c7.gif)
+
 
 ## Options
 
