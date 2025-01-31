@@ -14,7 +14,7 @@ const DELAY = 3
 const COLUMNS = process.stdout.columns
 const ROWS = process.stdout.rows
 
-function startDrawing(speed = 150) {
+function startDrawing(speed = 250) {
   const msPerFrame = 1000 / speed
   const zigZagPath = getZigZagPath()
   const rectangularPath = getRectangularPath(zigZagPath[zigZagPath.length - 1])
