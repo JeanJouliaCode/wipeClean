@@ -19,6 +19,10 @@ to run the program just write:
 
 ![ezgif-1-e28b5aae8c](https://user-images.githubusercontent.com/60259431/155228227-a429c2ae-a003-41d0-b8de-a6fa8b7413c7.gif)
 
+or try it with out installing from Nix:
+
+`nix run github:JeanJouliaCode/wipeClean`
+
 ## Options
 
 Configurable values are stored in `~/.wipeclean/config.json`.
